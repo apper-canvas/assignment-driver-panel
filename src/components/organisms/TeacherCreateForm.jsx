@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Card from "@/components/atoms/Card";
-import Button from "@/components/atoms/Button";
-import FormField from "@/components/molecules/FormField";
-import ApperIcon from "@/components/ApperIcon";
 import assignmentService from "@/services/api/assignmentService";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import Card from "@/components/atoms/Card";
+import FormField from "@/components/molecules/FormField";
 
 const TeacherCreateForm = ({ onAssignmentCreated }) => {
   const [formData, setFormData] = useState({
@@ -36,8 +36,7 @@ const TeacherCreateForm = ({ onAssignmentCreated }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Basic validation
+
     if (!formData.title.trim() || !formData.questionText.trim()) {
       toast.error("Please fill in all required fields");
       return;

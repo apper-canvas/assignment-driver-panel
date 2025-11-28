@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
-import Card from "@/components/atoms/Card";
-import Button from "@/components/atoms/Button";
-import Badge from "@/components/atoms/Badge";
-import Switch from "@/components/atoms/Switch";
+import assignmentService from "@/services/api/assignmentService";
+import ApperIcon from "@/components/ApperIcon";
 import Loading from "@/components/ui/Loading";
 import ErrorView from "@/components/ui/ErrorView";
 import Empty from "@/components/ui/Empty";
-import ApperIcon from "@/components/ApperIcon";
-import assignmentService from "@/services/api/assignmentService";
+import Button from "@/components/atoms/Button";
+import Switch from "@/components/atoms/Switch";
+import Card from "@/components/atoms/Card";
+import Badge from "@/components/atoms/Badge";
 
 const TeacherManageList = ({ refreshTrigger }) => {
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const loadAssignments = async () => {
+const loadAssignments = async () => {
     setLoading(true);
     setError("");
     
@@ -35,6 +35,16 @@ const TeacherManageList = ({ refreshTrigger }) => {
     loadAssignments();
   }, [refreshTrigger]);
 
+  const handleDelete = async (id) => {
+    try {
+      await assignmentService.delete(id);
+      toast.success("Assignment deleted successfully!");
+      setAssignments(prev => prev.filter(assignment => assignment.Id !== id));
+    } catch (error) {
+      toast.error("Failed to delete assignment. Please try again.");
+      console.error("Error deleting assignment:", error);
+    }
+  };
   const handleToggleLive = async (assignmentId, currentStatus) => {
     try {
       const updatedAssignment = await assignmentService.toggleLiveStatus(assignmentId);
