@@ -75,7 +75,7 @@ class AssignmentService {
     return null;
   }
 
-  async getLiveAssignments() {
+async getLiveAssignments() {
     await this.delay();
     const now = new Date().toISOString();
     
@@ -84,6 +84,34 @@ class AssignmentService {
       assignment.liveDate <= now && 
       assignment.expireDate > now
     ).map(assignment => ({ ...assignment }));
+  }
+
+  async getFilteredAssignments(filters = {}) {
+    await this.delay();
+    const now = new Date().toISOString();
+    
+    return this.assignments.filter(assignment => {
+      // Date range filtering
+      if (filters.startDate) {
+        const startDate = new Date(filters.startDate).toISOString();
+        if (assignment.liveDate < startDate) return false;
+      }
+      
+      if (filters.endDate) {
+        const endDate = new Date(filters.endDate).toISOString();
+        if (assignment.expireDate > endDate) return false;
+      }
+      
+      // Status filtering
+      const isExpired = assignment.expireDate <= now;
+      const isLive = assignment.isLive && assignment.liveDate <= now && assignment.expireDate > now;
+      
+      if (!filters.showLive && isLive) return false;
+      if (!filters.showExpired && isExpired) return false;
+      if (filters.showLive && !isLive && !isExpired) return false;
+      
+      return true;
+}).map(assignment => ({ ...assignment }));
   }
 }
 
