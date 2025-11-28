@@ -2,12 +2,8 @@ import { useState, useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { router } from "@/router";
-import Layout from "@/components/organisms/Layout";
-import TeacherDashboard from "@/components/pages/TeacherDashboard";
-import StudentDashboard from "@/components/pages/StudentDashboard";
 import Loading from "@/components/ui/Loading";
 
-// Mock Firebase configuration and authentication
 const __firebase_config = {
   apiKey: "mock-api-key",
   authDomain: "assignment-hub.firebaseapp.com",
@@ -67,19 +63,15 @@ const App = () => {
     return <Loading />;
   }
 
-  return (
-    <div className="min-h-screen bg-slate-50">
-      <Layout userId={user.userId} userRole={user.role}>
-        {user.role === "teacher" ? (
-          <TeacherDashboard />
-        ) : (
-          <StudentDashboard userId={user.userId} />
-        )}
-      </Layout>
+  // Create router with user context
+  const routerWithContext = router(user);
 
+  return (
+    <>
+      <RouterProvider router={routerWithContext} />
       <ToastContainer
         position="top-right"
-        autoClose={3000}
+        autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -88,9 +80,8 @@ const App = () => {
         draggable
         pauseOnHover
         theme="light"
-        style={{ zIndex: 9999 }}
       />
-    </div>
+    </>
   );
 };
 
