@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Card from '@/components/atoms/Card';
 import ApperIcon from '@/components/ApperIcon';
-import { assignmentService } from '@/services/api/assignmentService';
+import assignmentService from '@/services/api/assignmentService';
 
 const AssignmentSummaryCards = ({ refreshTrigger }) => {
   const [summary, setSummary] = useState({
