@@ -1,0 +1,77 @@
+[
+  {
+    "Id": 1,
+    "title": "JavaScript Fundamentals",
+    "questionText": "What is the correct way to declare a variable in JavaScript ES6?",
+    "options": {
+      "A": "var myVariable = 'value';",
+      "B": "let myVariable = 'value';", 
+      "C": "const myVariable = 'value';",
+      "D": "Both B and C are correct"
+    },
+    "correctAnswer": "D",
+    "liveDate": "2024-01-15T09:00:00Z",
+    "expireDate": "2024-01-15T23:59:59Z",
+    "isLive": true
+  },
+  {
+    "Id": 2,
+    "title": "React Components",
+    "questionText": "Which hook is used to manage component state in functional React components?",
+    "options": {
+      "A": "useEffect",
+      "B": "useState",
+      "C": "useContext", 
+      "D": "useReducer"
+    },
+    "correctAnswer": "B",
+    "liveDate": "2024-01-16T08:00:00Z",
+    "expireDate": "2024-01-16T20:00:00Z",
+    "isLive": false
+  },
+  {
+    "Id": 3,
+    "title": "CSS Flexbox",
+    "questionText": "Which CSS property is used to make a flex container?",
+    "options": {
+      "A": "display: flex;",
+      "B": "flex: 1;",
+      "C": "flex-direction: row;",
+      "D": "justify-content: center;"
+    },
+    "correctAnswer": "A",
+    "liveDate": "2024-01-17T10:00:00Z",
+    "expireDate": "2024-01-17T22:00:00Z",
+    "isLive": true
+  },
+  {
+    "Id": 4,
+    "title": "Database Concepts",
+    "questionText": "What does SQL stand for?",
+    "options": {
+      "A": "Structured Query Language",
+      "B": "Standard Query Language", 
+      "C": "Simple Query Language",
+      "D": "Sequential Query Language"
+    },
+    "correctAnswer": "A",
+    "liveDate": "2024-01-18T09:30:00Z",
+    "expireDate": "2024-01-18T18:30:00Z",
+    "isLive": false
+  },
+  {
+    "Id": 5,
+    "title": "Web Security",
+    "questionText": "Which of the following is NOT a common web vulnerability?",
+    "options": {
+      "A": "Cross-Site Scripting (XSS)",
+      "B": "SQL Injection",
+      "C": "HTTP Encryption",
+      "D": "Cross-Site Request Forgery (CSRF)"
+    },
+    "correctAnswer": "C",
+    "liveDate": "2024-01-19T11:00:00Z",
+    "expireDate": "2024-01-19T23:00:00Z",
+    "isLive": true
+  }
+]
