@@ -111,7 +111,24 @@ async getLiveAssignments() {
       if (filters.showLive && !isLive && !isExpired) return false;
       
       return true;
-}).map(assignment => ({ ...assignment }));
+    }).map(assignment => ({ ...assignment }));
+  }
+
+  async getAssignmentSummary() {
+    await this.delay();
+    const now = new Date().toISOString();
+    
+    const total = this.assignments.length;
+    const live = this.assignments.filter(assignment => 
+      assignment.isLive && 
+      assignment.liveDate <= now && 
+      assignment.expireDate > now
+    ).length;
+    const expired = this.assignments.filter(assignment => 
+      assignment.expireDate <= now
+    ).length;
+
+    return { total, live, expired };
   }
 }
 
